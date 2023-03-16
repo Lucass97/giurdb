@@ -1,0 +1,89 @@
+
+.mat-card-title {
+  color: #ffffff;
+}
+
+.mat-card-header{
+    background-color: goldenrod;
+  padding:5px ;
+}
+
+ .mat-card{
+  padding:0 ;
+}
+
+.mat-card-content{
+  padding:10px ;
+}
+
+.radio-group {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+    }
+    mat-radio-button {
+      margin-right: 16px;
+    }
+
+    #search-massima{
+  width: 100%;
+}
+
+    :host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.example-card{
+    margin: 0 auto;
+    width: 50%;
+}
+.mat-form-field{
+  margin: 3px 3px;
+}
+.mat-divider{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.mat-card{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.mat-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Se si desidera che il card occupi l'intera altezza della pagina */
+}
+
+.mat-card {
+  max-width: 750px; /* oppure qualsiasi altra larghezza desiderata */
+}
+
+.form-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 16px;
+}
+.mat-grid-list {
+  width: 100%;
+}
+
+.tile-style {
+    justify-content: flex-start !important;
+}
+.mat-grid-tile {
+
+}
+
+.button-section {
+  display: flex;justify-content: flex-end !important;
+    margin: 10px auto;
+}
+
+.button-section .btn {
+  margin-left: 8px;
+
+}

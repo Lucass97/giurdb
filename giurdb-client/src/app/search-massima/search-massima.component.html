@@ -1,0 +1,116 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title><h3> Ricerca su Massima</h3></mat-card-title>
+    </mat-card-header>
+    <mat-card-content [formGroup]="searchForm">
+
+        <div class="form-section">
+        <mat-form-field id="search-massima" appearance="outline">
+            <mat-label>Ricerca</mat-label>
+            <input matInput type="text" formControlName="searchInput" placeholder="Cerca...">
+            <button mat-button *ngIf="searchForm.controls['searchInput'].value" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="clearSearch()">
+                <mat-icon>close</mat-icon>
+            </button>
+            <button mat-button matSuffix mat-icon-button aria-label="Search" (click)="submitSearch()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </mat-form-field>
+            </div>
+        <div class="radio-group">
+            <mat-radio-group formControlName="searchOption">
+                <mat-radio-button value="atLeastOneWord">Almeno una delle parole</mat-radio-button>
+                <mat-radio-button value="allWords">Tutte le parole</mat-radio-button>
+                <mat-radio-button value="exactSentence">Frase esatta</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-divider></mat-divider>
+        <br>
+        <h4> Ricerca per Voci </h4>
+
+        <div class="form-section">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Voce</mat-label>
+            <mat-select formControlName="voce">
+                <mat-option>---</mat-option>
+                <mat-option *ngFor="let voce of voceList" [value]="voce">
+                    {{voce}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" *ngIf="searchForm.controls['voce'].value">
+            <mat-label>Sottovoce</mat-label>
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let sottovoce of sottovoci" [selectable]="true"
+                          [removable]="true" (removed)="removeSottovoce(sottovoce)">
+                    {{sottovoce}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+
+            <input matInput placeholder="Nuova sottovoce"
+                   [matChipInputFor]="chipList" [matAutocomplete]="auto"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="addSottovoce($event)"/>
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displaySottovoce"
+                              (optionSelected)="selectSottovoce($event)">
+                <mat-option *ngFor="let sottovoce of filteredSottovoci" [value]="sottovoce">
+                    {{sottovoce}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-hint>Aggiungi una sottovoce e premi invio</mat-hint>
+        </mat-form-field>
+    </div>
+        <div class="button-section">
+        <button mat-icon-button color="accent" aria-label="Delete" class="btn"
+                      type="button">
+                <mat-icon>add</mat-icon>
+              </button>
+        <button mat-icon-button color="warn" aria-label="Delete" class="btn"
+                      type="button">
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+        </div>
+
+       <br>
+
+        <mat-divider></mat-divider>
+
+
+        <h4> Ricerca per estremi </h4>
+
+        <div class="form-section">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Enti Giudicanti</mat-label>
+                <input matInput type="text" formControlName="entiGiudicanti" placeholder="...">
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Sezione</mat-label>
+                <mat-select formControlName="sezione">
+                    <mat-option>---</mat-option>
+                    <mat-option value="M">I</mat-option>
+                    <mat-option value="F">II</mat-option>
+                    <mat-option value="M">III</mat-option>
+                    <mat-option value="F">IV</mat-option>
+                    <mat-option value="M">V</mat-option>
+                    <mat-option value="F">VI</mat-option>
+                    <mat-option value="M">VII</mat-option>
+                    <mat-option value="F">VIII</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-section">
+            <mat-form-field appearance="outline">
+                <mat-label>Seleziona la data di deposito</mat-label>
+                <input matInput [matDatepicker]="datepicker">
+                <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+    </mat-card-content>
+</mat-card>

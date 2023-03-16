@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  client:
+    image: node:18.15-buster-slim
+    volumes:
+      - ./giurdb-client:/home/client
+    working_dir: /home/client
+    command: sh -c "npm install && npm install -g @angular/cli && ng serve --host 0.0.0.0"
+    ports:
+      - 4200:4200
